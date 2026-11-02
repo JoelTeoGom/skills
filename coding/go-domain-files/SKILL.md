@@ -17,7 +17,11 @@ A type gets its own file only when one of these is true:
 2. It has its own behavior with enough code to stand alone, such as methods, validation or parsing.
 3. It is a separate concept that makes sense without the entity, such as a worker, or the HTTP request and response a job sends.
 
-When none applies, the type lives with its entity.
+When none applies, the type lives with its entity. Its validation methods and constants move with it.
+
+## errors.go
+
+Business errors always live in `errors.go`, separate from the entities, even when there is only one. The helpers that build them, such as an `invalid(message)` wrapper, go there too. Every layer that checks an error with `errors.Is` knows where to find it.
 
 ## Naming
 
